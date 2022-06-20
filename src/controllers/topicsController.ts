@@ -1,8 +1,8 @@
 'use strict';
 
 import { Request, Response } from 'express';
-import { topicsBo } from '../bos/topicsbo';
 import { Topic } from '../models/Topic';
+import { topicsBo } from '../bos/topicsBo'
 
 class TopicsController {
   public async getTopics(req: Request, res: Response): Promise<void> {
