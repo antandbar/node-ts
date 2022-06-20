@@ -16,6 +16,9 @@ const dbPostgresqlConnection = async () => {
         await db.authenticate();
         console.log('Database postgresql online');
 
+        // Se sincroniza el modelo
+        await db.sync();
+
 
     } catch (error:any) {
         throw new Error( error );
