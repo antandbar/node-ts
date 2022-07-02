@@ -16,9 +16,12 @@ import TopicsRoutes from './routes/topics';
 const app = express();
 import { dbMongodbConnection } from './lib/connectMogoose';
 import { dbPostgresqlConnection } from './lib/connectPostgresql';
+import Associations from './models/Associations';
 
 dbPostgresqlConnection();
 dbMongodbConnection();
+Associations.relations();
+
 
 //Configuracionesa
 app.set('port', process.env.PORT || 3000);

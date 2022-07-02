@@ -16,8 +16,10 @@ const topics_1 = __importDefault(require("./routes/topics"));
 const app = (0, express_1.default)();
 const connectMogoose_1 = require("./lib/connectMogoose");
 const connectPostgresql_1 = require("./lib/connectPostgresql");
+const Associations_1 = __importDefault(require("./models/Associations"));
 (0, connectPostgresql_1.dbPostgresqlConnection)();
 (0, connectMogoose_1.dbMongodbConnection)();
+Associations_1.default.relations();
 //Configuracionesa
 app.set('port', process.env.PORT || 3000);
 // Middelwares

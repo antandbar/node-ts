@@ -13,19 +13,17 @@ const db = new Sequelize(
   },
 );
 
-const dbPostgresqlConnection = async () => {
+const dbPostgresqlConnection = async (): Promise<void> => {
   try {
     await db.authenticate();
     console.log('Database postgresql online');
 
     // Se sincroniza el modelo
-    await db.sync();
+    await db.sync({alter: true});
   } catch (error: any) {
     throw new Error(error);
   }
-};
-
-dbPostgresqlConnection();
+}
 
 export  {
   db,
