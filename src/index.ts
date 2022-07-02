@@ -10,8 +10,11 @@ import TopicsRoutes from './routes/topics';
 
 // Inicializaciones
 const app = express();
-require('./lib/connectMogoose');
-require('./lib/connectPostgresql');
+import mongodb from './lib/connectMogoose';
+import connetPostgresql from './lib/connectPostgresql';
+
+connetPostgresql.dbPostgresqlConnection();
+mongodb.dbMongodbConnection();
 
 //Configuracionesa
 app.set('port', process.env.PORT || 3000);
