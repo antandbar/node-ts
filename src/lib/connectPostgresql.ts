@@ -1,13 +1,13 @@
 'use strict';
 
-const { Sequelize } = require('sequelize');
+import { Sequelize } from 'sequelize'
 
 const db = new Sequelize(
-  process.env.POSTGRESQL_DATABASE,
-  process.env.POSTGRESQL_USER,
-  process.env.POSTGRESQL_PASSWORD,
+  (process.env.POSTGRESQL_DATABASE as string),
+  (process.env.POSTGRESQL_USER as string),
+  (process.env.POSTGRESQL_PASSWORD as string),
   {
-    host: process.env.POSTGRESQL_HOST,
+    host: (process.env.POSTGRESQL_HOST as string),
     dialect: 'postgres',
     // logging: false
   },
@@ -27,7 +27,7 @@ const dbPostgresqlConnection = async () => {
 
 dbPostgresqlConnection();
 
-export = {
+export  {
   db,
   dbPostgresqlConnection,
 };

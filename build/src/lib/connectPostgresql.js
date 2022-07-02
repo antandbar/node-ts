@@ -8,12 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const { Sequelize } = require('sequelize');
-const db = new Sequelize(process.env.POSTGRESQL_DATABASE, process.env.POSTGRESQL_USER, process.env.POSTGRESQL_PASSWORD, {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.dbPostgresqlConnection = exports.db = void 0;
+const sequelize_1 = require("sequelize");
+const db = new sequelize_1.Sequelize(process.env.POSTGRESQL_DATABASE, process.env.POSTGRESQL_USER, process.env.POSTGRESQL_PASSWORD, {
     host: process.env.POSTGRESQL_HOST,
     dialect: 'postgres',
     // logging: false
 });
+exports.db = db;
 const dbPostgresqlConnection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield db.authenticate();
@@ -25,7 +28,5 @@ const dbPostgresqlConnection = () => __awaiter(void 0, void 0, void 0, function*
         throw new Error(error);
     }
 });
+exports.dbPostgresqlConnection = dbPostgresqlConnection;
 dbPostgresqlConnection();
-module.exports = {
-    db
-};

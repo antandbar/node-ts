@@ -19,6 +19,6 @@ const dbMongodbConnection = () => {
   } as mongoose.ConnectOptions);
 };
 
-export = {
+export  {
   dbMongodbConnection,
 };

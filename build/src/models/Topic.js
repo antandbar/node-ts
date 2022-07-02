@@ -1,22 +1,22 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const { DataTypes, Model } = require('sequelize');
-const { db } = require('../lib/connectPostgresql');
-class TopicSchema extends Model {
+const sequelize_1 = require("sequelize");
+const connectPostgresql_1 = require("../lib/connectPostgresql");
+class TopicSchema extends sequelize_1.Model {
 }
 TopicSchema.init({
     id: {
-        type: DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
     text: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         unique: true,
     },
 }, {
     timestamps: false,
-    sequelize: db,
+    sequelize: connectPostgresql_1.db,
     modelName: 'topic',
 });
 exports.default = TopicSchema;
