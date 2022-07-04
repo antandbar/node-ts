@@ -2,7 +2,7 @@
 
 import { Request, Response } from 'express';
 import { Topic } from '../models/Topic';
-import { topicsBo } from '../bos/topicsBo'
+import { topicsBo } from '../bos/topicsBo';
 
 class TopicsController {
   public async getTopics(req: Request, res: Response): Promise<void> {

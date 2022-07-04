@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 const dbMongodbConnection = () => {
   // en caso de error en la conexión
-  mongoose.connection.on('error', (err: any) => {
+  mongoose.connection.on('error', (err: object) => {
     console.log('Error de conexión a MongoDB', err);
     process.exit(1);
   });
@@ -20,9 +20,9 @@ const dbMongodbConnection = () => {
 }; */
 
 
-mongoose.connect((process.env.NODE_ENV!) === 'test'
-? (process.env.URI_TEST!)
-: (process.env.URI!), {
+mongoose.connect((process.env.NODE_ENV as string) === 'test'
+? (process.env.URI_TEST as string)
+: (process.env.URI as string), {
   useNewUrlParser: true,
 } as mongoose.ConnectOptions);
 

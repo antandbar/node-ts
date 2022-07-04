@@ -31,7 +31,7 @@ dbMongodbConnection();
 
 
 //Configuracionesa
-app.set('port', (process.env.NODE_ENV!) === 'test'?3001:process.env.PORT || 3000);
+app.set('port', (process.env.NODE_ENV as string) === 'test'?3001:process.env.PORT || 3000);
 
 // Middelwares
 app.use(morgan('dev'));
