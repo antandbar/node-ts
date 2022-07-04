@@ -1,12 +1,15 @@
 'use strict';
 
 
+import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import createHttpError from 'http-errors';
 import path from 'path';
-import 'dotenv/config';
+import { dbMongodbConnection } from './lib/connectMogoose';
+import { dbPostgresqlConnection } from './lib/connectPostgresql';
+import Associations from './models/Associations';
 
 // Routes
 import BooksRoutes from './routes/books';
@@ -14,17 +17,21 @@ import TopicsRoutes from './routes/topics';
 
 // Inicializaciones
 const app = express();
-import { dbMongodbConnection } from './lib/connectMogoose';
-import { dbPostgresqlConnection } from './lib/connectPostgresql';
-import Associations from './models/Associations';
 
-dbPostgresqlConnection();
-dbMongodbConnection();
+(async () => {
+  try {
+    await dbPostgresqlConnection();
+  }catch(err:any){
+    throw new Error(err);
+  }
+})();
+
 Associations.relations();
+dbMongodbConnection();
 
 
 //Configuracionesa
-app.set('port', process.env.PORT || 3000);
+app.set('port', (process.env.NODE_ENV!) === 'test'?3001:process.env.PORT || 3000);
 
 // Middelwares
 app.use(morgan('dev'));
@@ -40,7 +47,7 @@ app.use('/apiv1/topics', TopicsRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Arrancar el servidor
-app.listen(app.get('port'), () => {
+export const server = app.listen(app.get('port'), () => {
   console.log(`Server on port ${app.get('port')}`);
 });
 
@@ -61,3 +68,5 @@ app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
   /* res.json('error'); */
   res.json({ error: err.message });
 });
+
+export default app;

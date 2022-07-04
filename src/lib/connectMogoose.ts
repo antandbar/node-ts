@@ -14,10 +14,21 @@ const dbMongodbConnection = () => {
     console.log('Conectado a MongoDB en la BD:', mongoose.connection.name);
   });
 
-  mongoose.connect((process.env.URI!), {
+/*   mongoose.connect((process.env.URI!), {
     useNewUrlParser: true,
   } as mongoose.ConnectOptions);
+}; */
+
+
+mongoose.connect((process.env.NODE_ENV!) === 'test'
+? (process.env.URI_TEST!)
+: (process.env.URI!), {
+  useNewUrlParser: true,
+} as mongoose.ConnectOptions);
+
 };
+
+
 
 export  {
   dbMongodbConnection,

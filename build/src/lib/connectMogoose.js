@@ -15,7 +15,13 @@ const dbMongodbConnection = () => {
     mongoose_1.default.connection.once('open', async () => {
         console.log('Conectado a MongoDB en la BD:', mongoose_1.default.connection.name);
     });
-    mongoose_1.default.connect((process.env.URI), {
+    /*   mongoose.connect((process.env.URI!), {
+        useNewUrlParser: true,
+      } as mongoose.ConnectOptions);
+    }; */
+    mongoose_1.default.connect((process.env.NODE_ENV) === 'test'
+        ? (process.env.URI_TEST)
+        : (process.env.URI), {
         useNewUrlParser: true,
     });
 };
