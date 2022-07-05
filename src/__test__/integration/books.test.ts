@@ -21,7 +21,7 @@ describe('testing Books', () => {
   });
 });
 
-afterAll(async () => {
+afterAll(() => {
   try {
     mongoose.connection.close();
     server.close();
