@@ -10,7 +10,6 @@
     "start": "node build/src",
     "dev": "nodemon",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts —-fix",
     "test:int": "cross-env NODE_ENV=test jest integration --silent --detectOpenHandles",
     "test:int:watch": "cross-env NODE_ENV=test jest integration --watch --silent --detectOpenHandles",
     "test:int:coverage": "cross-env NODE_ENV=test jest --coverage --silent --detectOpenHandles"

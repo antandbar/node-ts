@@ -1,6 +1,5 @@
 'use strict';
 
-
 import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
 import morgan from 'morgan';
@@ -21,7 +20,7 @@ const app = express();
 (async () => {
   try {
     await dbPostgresqlConnection();
-  }catch(err:any){
+  } catch (err: any) {
     throw new Error(err);
   }
 })();
@@ -29,9 +28,11 @@ const app = express();
 Associations.relations();
 dbMongodbConnection();
 
-
 //Configuracionesa
-app.set('port', (process.env.NODE_ENV as string) === 'test'?3001:process.env.PORT || 3000);
+app.set(
+  'port',
+  (process.env.NODE_ENV as string) === 'test' ? 3001 : process.env.PORT || 3000,
+);
 
 // Middelwares
 app.use(morgan('dev'));
