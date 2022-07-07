@@ -58,13 +58,13 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 });
 
 // error handler
-app.use(function (err: any, req: Request, res: Response) {
+app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // error
-  res.status(err.status || 500);
+  if (!res.status) res.status(err.status || 500);
 
   /* res.json('error'); */
   res.json({ error: err.message });
