@@ -65,7 +65,7 @@ app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // error
-  if (!res.status) res.status(err.status || 500);
+  res.status(err.status || 500);
 
   /* res.json('error'); */
   res.json({ error: err.message });
